@@ -7,16 +7,15 @@ import axios from 'axios';
 // Notes:
   // allows function components to use "something like" lifecycle methods (ex. componentDidMount())
   // configure the hook to run some code automatically in one of three scenarios:
-    // 1) When the component is rendered for the first time (* Only Ran Once, then not again)
-    // 2) When the component is rendered for the first time and whenever it re-renders
-    // 3) When the component is rendered for the first time and whenever it re-renders and some piece of data has changed. (* both re-render and data change must occur)
+    // 1) []: When the component is rendered for the first time (* Only Ran Once, then not again)
+    // 2) blank, no params: When the component is rendered for the first time and whenever it re-renders
+    // 3) [state]: When the component is rendered for the first time and whenever it re-renders and some piece of data has changed. (* both re-render and data change must occur)
   // `useEffect` can return a FUNCTION value, but no other values
     // return function acts as cleanup for `useEffect` values
 const Search = () => {
   
   // state
   const [term, setTerm] = useState('tiger');
-  const [debouncedTerm, setDebouncedTerm] = useState('tiger');
   const [results, setResults] = useState([]);
 
   // lifecycle methods
@@ -82,24 +81,6 @@ const Search = () => {
     }
   }, [term]);
 
-  useEffect(() => {
-    const search = async () => {
-      const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
-        params: {
-          action: 'query',
-          list: 'search',
-          origin: '*',
-          format: 'json',
-          srsearch: debouncedTerm,
-        },
-      });
- 
-      setResults(data.query.search);
-    };
-    if (debouncedTerm) {
-      search();
-    }
-  }, [debouncedTerm]);
 
 
   const renderedResults = results.map((result) => {
