@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef } from 'react';
 
-const Dropdown = ({ options, selected, onSelectedChange }) => {
+const Dropdown = ({ options, selected, onSelectedChange, label }) => {
 
   const [open, setOpen] = useState(false);
 
@@ -51,7 +51,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   })
 
   
-  console.log(ref.current);
+  // console.log(ref.current);
 
   return (
     <div
@@ -60,7 +60,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
     >
       <div className="field">
         <label className="label">
-          Select a Color
+          {label}
         </label>
         <div
           // toggle open

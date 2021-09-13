@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 // import Accordion from './components/Accordion';
 // import Search from './components/Search';
-import Dropdown from './components/Dropdown'
+import Dropdown from './components/Dropdown';
+import Translate from './components/Translate';
 
 const items = [
   {
@@ -41,18 +42,21 @@ const App = () => {
   return(
     <div>
       <br/>
-      <button onClick={() => {setShowDropdown(!showDropdown)}}>
-        Toggle Dropdown
-      </button>
+
 
       {/* <Accordion items={items} /> */}
       {/* <Search /> */}
-      {showDropdown ?
+      {/* <button onClick={() => {setShowDropdown(!showDropdown)}}>
+        Toggle Dropdown
+      </button> */}
+      {/* {showDropdown ?
       <Dropdown
+        label="Select Color"
         options={options}
         selected={selected}
         onSelectedChange={setSelected}
-      /> : null}
+      /> : null} */}
+      <Translate />
     </div>
     
   )
